@@ -8,7 +8,9 @@ import { RegisterInput, LoginInput } from './auth.schema';
 const SALT_ROUNDS = 12;
 
 function generateToken(userId: string): string {
-  return jwt.sign({ userId }, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
+  return jwt.sign({ userId }, env.jwtSecret, {
+    expiresIn: env.jwtExpiresIn as jwt.SignOptions['expiresIn'],
+  });
 }
 
 export async function register(input: RegisterInput) {
